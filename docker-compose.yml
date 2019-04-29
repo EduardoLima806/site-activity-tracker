@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-    gateway:
-        build: ./gateway
-        container_name: "gateway"
+    gateway-api:
+        build: ./gateway-api
+        container_name: "gateway-api"
     app:
         depends_on:
             - mongodb

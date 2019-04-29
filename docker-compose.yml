@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+	gateway:
+        build: ./gateway
+        container_name: "gateway"
+	app:
+        depends_on:
+            - mongodb
+            - redis
+        build: ./app
+        container_name: "app"
+	mongodb:
+		image: mongo:latest
+			container_name: "mongodb"
+			environment:
+			  - MONGO_DATA_DIR=/data/db
+			  - MONGO_LOG_DIR=/dev/null
+			volumes:
+			  - ./data/db:/data/db
+			ports:
+				- 27017:27017
+			command: mongod --smallfiles --logpath=/dev/null # --quiet
+    redis:
+        container_name: redis
+        image: redis:latest
+        ports:
+          - "6379:6379"
+        volumes:
+          - ../data/redis:/data
+        restart: always

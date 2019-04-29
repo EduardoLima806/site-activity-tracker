@@ -4,12 +4,6 @@ services:
     gateway-api:
         build: ./gateway-api
         container_name: "gateway-api"
-    app:
-        depends_on:
-            - mongodb
-            - redis
-        build: ./app
-        container_name: "app"
     mongodb:
         image: mongo:latest
         container_name: "mongodb"

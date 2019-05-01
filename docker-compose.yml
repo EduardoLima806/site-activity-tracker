@@ -6,6 +6,9 @@ services:
         container_name: "gateway-api"
         ports:
             - 8080:8080
+    app:
+        build: ./app
+        container_name: "app-node"
     mongodb:
         image: mongo:latest
         container_name: "mongodb"

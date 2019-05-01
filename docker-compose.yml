@@ -9,12 +9,13 @@ services:
     app:
         build: ./app
         container_name: "app-node"
-    mongodb:
+    mongo:
         image: mongo:latest
-        container_name: "mongodb"
+        container_name: "mongo"
         environment:
             - MONGO_DATA_DIR=/data/db
             - MONGO_LOG_DIR=/dev/null
+            - MONGO_URL=mongodb://mongo:27017/users
         volumes:
             - ./data/db:/data/db
         ports:

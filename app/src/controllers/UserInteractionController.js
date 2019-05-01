@@ -25,13 +25,10 @@ module.exports = {
 
     async store(req, res) {
         const token = req.get("Authorization");
-        try {
-            const interaction = await UserInteraction.create(req.body);
-            const counts = await redisClient.incr(token);
-        } catch (error) {
-            console.log(error);
-        }
-        
+       
+        const interaction = await UserInteraction.create(req.body);
+        const counts = await redisClient.incr(token);
+       
         return res.json(interaction);
     },
 

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 const cors = require('cors');
+var redisClient = require('./src/lib/redisCreateClient').createClient;
 
 // Iniciando o App
 const app = express();
@@ -9,12 +10,16 @@ app.use(express.json()); // Permite o envio de payloads json
 app.use(cors());
 
 // Iniciando o DB
-mongoose.connect('mongodb://mongodb:27017/users', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb://db:27017/users', { useNewUrlParser: true }, (err) => {
 //mongoose.connect('mongodb+srv://admin:mgadmin@mongodb-8yuec.mongodb.net/users-interactions', { useNewUrlParser: true }, (err) => {
     if (err)
         throw err;
     console.log('connected to mongo');
 });
+
+redisClient.on('connect', function () {
+    console.log('Redis client connected');
+})
 
 requireDir('./src/models');
 

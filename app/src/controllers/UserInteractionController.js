@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserInteraction = mongoose.model('UserInteraction');
+var redisClient = require('../lib/redisCreateClient').createClient;
 
 module.exports = {
     async index(req, res) {
@@ -23,8 +24,14 @@ module.exports = {
     },
 
     async store(req, res) {
-        const interaction = await UserInteraction.create(req.body);
-
+        const token = req.get("Authorization");
+        try {
+            const interaction = await UserInteraction.create(req.body);
+            const counts = await redisClient.incr(token);
+        } catch (error) {
+            console.log(error);
+        }
+        
         return res.json(interaction);
     },
 

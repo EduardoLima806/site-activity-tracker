@@ -14,7 +14,8 @@ services:
         build: ./app
         container_name: "app-node"
         depends_on:
-            - mongodb
+            - db
+            - redis
         ports:
             - 3001:3001
         links:

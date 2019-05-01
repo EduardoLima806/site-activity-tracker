@@ -6,9 +6,15 @@ services:
         container_name: "gateway-api"
         ports:
             - 8080:8080
+        depends_on:
+            - app
     app:
         build: ./app
         container_name: "app-node"
+        depends_on:
+            - mongodb
+        ports:
+            - 3001:3001
     mongodb:
         image: mongo:latest
         container_name: "mongodb"
@@ -21,7 +27,7 @@ services:
             - ./data/db:/data/db
         ports:
             - 27017:27017
-        command: mongod --smallfiles --logpath=/dev/null # --quiet
+        command: mongod --bind_ip_all --smallfiles --logpath=/dev/null # --quiet
     redis:
         container_name: redis
         image: redis:latest

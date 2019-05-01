@@ -9,7 +9,7 @@ app.use(express.json()); // Permite o envio de payloads json
 app.use(cors());
 
 // Iniciando o DB
-mongoose.connect('mongodb://mongo:27017/users', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb://mongodb:27017/users', { useNewUrlParser: true }, (err) => {
 //mongoose.connect('mongodb+srv://admin:mgadmin@mongodb-8yuec.mongodb.net/users-interactions', { useNewUrlParser: true }, (err) => {
     if (err)
         throw err;

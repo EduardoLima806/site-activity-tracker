@@ -33,7 +33,7 @@ public class TokenAuthenticationService {
 				.signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
 				.compact();
 		
-		return SecurityConstants.TOKEN_PREFIX + " " + JWT;
+		return SecurityConstants.TOKEN_PREFIX + JWT;
 	}
 	
 	static Authentication getAuthentication(HttpServletRequest request) {

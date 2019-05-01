@@ -22,7 +22,7 @@ public class TokenAuthenticationService {
 				.signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
 				.compact();
 		
-		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + " " + JWT);
+		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + JWT);
 	}
 	
 	public static String getJWTToken(String username) {

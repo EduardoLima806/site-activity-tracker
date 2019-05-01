@@ -13,7 +13,7 @@ public class InteractionController {
 
 	@PostMapping("/interaction")
 	public ResponseEntity<Object> registerInteraction(@RequestBody UserInteraction userInteraction) {
-		final String uri = "http://localhost:3001/api/interactions";
+		final String uri = "http://app:3001/api/interactions";
 	    RestTemplate restTemplate = new RestTemplate();
 	    ResponseEntity<Object> result = restTemplate.postForEntity(uri, userInteraction, Object.class);
 	    return result;

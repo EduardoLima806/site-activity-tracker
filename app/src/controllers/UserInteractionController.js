@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserInteraction = mongoose.model('UserInteraction');
-// var redisClient = require('../lib/redisCreateClient').createClient;
+var redisClient = require('../lib/redisCreateClient').createClient;
 
 module.exports = {
     async index(req, res) {

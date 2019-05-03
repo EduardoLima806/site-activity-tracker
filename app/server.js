@@ -11,7 +11,7 @@ app.use(cors());
 
 // Iniciando o DB
 mongoose.connect('mongodb://db:27017/users', { useNewUrlParser: true }, (err) => {
-//mongoose.connect('mongodb+srv://admin:mgadmin@mongodb-8yuec.mongodb.net/users-interactions', { useNewUrlParser: true }, (err) => {
+ }, (err) => {
     if (err)
         throw err;
     console.log('connected to mongo');
